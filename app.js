@@ -2,6 +2,8 @@
 let datos = [];
 
 function calcularBonos(){
+    
+    datos = [];
 
     let sueldo = document.getElementById('sueldo').value;
     let tiempo = document.getElementById('time').value;
