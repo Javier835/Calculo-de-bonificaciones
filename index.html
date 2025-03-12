@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Bonificación</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <section class="input-section">
+        <label for="sueldo">Sueldo</label>
+        <input type="number" id="sueldo" name="sueldo" class="input-name" placeholder="Digite su sueldo actual" required>
+
+        <br><br>
+
+        <label for="time">Años en la empresa</label>
+        <input type="number" id="time" name="time" class="input-time" placeholder="Digite sus años en la empresa" required>
+
+        <br><br>
+
+        <button onclick="calcularBonos()">Calcular</button>
+        
+    </section>
+
+    <div class="result">
+        <ul id="resultados"></ul>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
