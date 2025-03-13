@@ -1,20 +1,25 @@
-
+//Almacena los datos a imprimir en la lista de resultados
 let datos = [];
+//Almacena el tiempo en la empresa
 let tiempo;
 
 function calcularBonos(){
-    
+    //vaciar array con mi lista
     datos = [];
 
+    //obtener el sueldo digitado por el usuario
     let sueldo = document.getElementById('sueldo').value;
+    //asignar a mi variable tiempo los meses que tiene el empleado
     tiempo = mesesEnLaEmpresa();
     
+    //variables con los calculos necesarios
     let salarioDiario = calcularSalarioDiario(sueldo);
     let diasQueTocan = calcularDiasQueTocan(parseInt(tiempo));
     let bonoBruto = bonosBruto(diasQueTocan,salarioDiario);
     let impuesto = impuestos(bonoBruto);
     let bonoNeto = bonosNeto(bonoBruto,impuesto);
     
+    //almacenar en array los datos de mi lista
     datos.push(
         `Sueldo: ${sueldo.toLocaleString('es-DO', { style: 'currency', currency: 'DOP' })}`,
         `Salario diario: ${salarioDiario.toLocaleString('es-DO', { style: 'currency', currency: 'DOP' })}`,
@@ -22,11 +27,11 @@ function calcularBonos(){
         `Días que te tocan: ${diasQueTocan}`,
         `Bonificación en bruto: ${bonoBruto.toLocaleString('es-DO', { style: 'currency', currency: 'DOP' })}`,
         `Impuestos: ${impuesto.toLocaleString('es-DO', { style: 'currency', currency: 'DOP' })}`,
-        `Bonificacion Neto: ${bonoNeto.toLocaleString('es-DO', { style: 'currency', currency: 'DOP' })}`    
+        `Bonificacion Neto: ${bonoNeto.toLocaleString('es-DO', { style: 'currency', currency: 'DOP' })}`
     
     );
     
-    
+    //convertir los meses laborados en años y meses
     function ConvertirMeses(tiempo){
         
         let mesesAnios = `${Math.floor(tiempo / 12)} Años y ${tiempo % 12} Meses`;
@@ -34,10 +39,13 @@ function calcularBonos(){
         return mesesAnios;
     }
     
+    //referencia a mi lista que muestra los resultados
     let resultados = document.getElementById('resultados');
 
+    //limpiar mi lista antes de usarla
     resultados.innerHTML = "";
 
+    //llenar mi lista con los datos de mi array
     datos.forEach(element => {
         const li = document.createElement('li');
         li.textContent = element;
@@ -67,8 +75,8 @@ function mesesEnLaEmpresa(){
     const fecha = new Date(fechaIngreso+ 'T00:00:00'); //Mi fecha seleccionada
   
 
-    // Obtener el año actual
-    const anioAnterior = new Date().getFullYear()-1; //2024
+    // Obtener el año anterior
+    const anioAnterior = new Date().getFullYear()-1;
     
 
     // Crear fecha del mes seleccionado en el año actual
@@ -84,9 +92,10 @@ function mesesEnLaEmpresa(){
 
 
 
-
+//calcular el salario diario del colaborador
 function calcularSalarioDiario(sueldo){
     
+    //comprobar si el colaborador tiene menos de 12 meses
     if(tiempo < 12){
 
         return ((sueldo * tiempo) / 12) / 23.83;
@@ -99,18 +108,22 @@ function calcularSalarioDiario(sueldo){
     
 };
 
+//calcular dias que le toca al colaborador según el tiempo en la empresa
 function calcularDiasQueTocan(anios){
     return anios < 36 ? 45 : 60;
 };
 
+//Calcular la bonificación en bruto
 function bonosBruto(dias,salarioDiario){
     return dias*salarioDiario;
 };
 
+//calcular las retenciones de esta bonificación
 function impuestos(bonos){
     return bonos * 0.18;
 };
 
+//calcular los bonos netos
 function bonosNeto(bruto,impuestos){
     return bruto-impuestos;
 };
