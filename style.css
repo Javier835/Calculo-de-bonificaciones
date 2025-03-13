@@ -1,77 +1,110 @@
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #333;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+
+
 /* Estilos generales */
+
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Arial', sans-serif;
+    background-color: #eef1f5;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
     margin: 0;
-}
-
-/* Contenedor del formulario */
-section {
-    background: white;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+}
+
+/* Contenedor principal */
+.input-section {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
     text-align: center;
+    width: 100%;
+    max-width: 450px;
 }
 
-/* Etiquetas y campos de entrada */
+/* Etiquetas */
 label {
-    font-weight: bold;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
     display: block;
-    margin: 10px 0 5px;
+    text-align: left;
+    margin-bottom: 8px;
 }
 
+/* Inputs */
 input {
     width: 100%;
-    padding: 3px;
-    margin-bottom: 15px;
+    padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    margin-bottom: 20px;
 }
 
-/* Botón de calcular */
+input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Botón */
 button {
-    background-color: #007bff;
+    width: 100%;
+    background: #007bff;
     color: white;
+    padding: 14px;
     border: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
     transition: background 0.3s;
+    margin-top: 10px;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background: #0056b3;
 }
 
-/* Contenedor de los resultados */
+/* Resultados */
 .result {
-    margin-top: 20px;
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    width: 320px;
+    margin-top: 25px;
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
 }
 
-/* Lista de resultados */
-#resultados {
-    list-style-type: none;
+.result ul {
+    list-style: none;
     padding: 0;
 }
 
-#resultados li {
-    background: #e9ecef;
-    margin: 5px 0;
-    padding: 8px;
-    border-radius: 5px;
-    font-size: 14px;
+.result ul li {
+    background: #dff0d8;
+    color: #3c763d;
+    padding: 12px;
+    margin: 6px 0;
+    border-radius: 8px;
+    font-size: 16px;
 }
