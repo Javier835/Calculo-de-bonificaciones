@@ -4,40 +4,46 @@ let tiempo;
 
 function calcularBonos(){
     
+    datos = [];
+
+    let sueldo = document.getElementById('sueldo').value;
     tiempo = mesesEnLaEmpresa();
-    alert (tiempo);
-    // datos = [];
-
-    // let sueldo = document.getElementById('sueldo').value;
-    // tiempo = mesesEnLaEmpresa();
     
-    // let salarioDiario = calcularSalarioDiario(sueldo);
-    // let diasQueTocan = calcularDiasQueTocan(parseInt(tiempo));
-    // let bonoBruto = bonosBruto(diasQueTocan,salarioDiario);
-    // let impuesto = impuestos(bonoBruto);
-    // let bonoNeto = bonosNeto(bonoBruto,impuesto);
+    let salarioDiario = calcularSalarioDiario(sueldo);
+    let diasQueTocan = calcularDiasQueTocan(parseInt(tiempo));
+    let bonoBruto = bonosBruto(diasQueTocan,salarioDiario);
+    let impuesto = impuestos(bonoBruto);
+    let bonoNeto = bonosNeto(bonoBruto,impuesto);
     
-    // datos.push(
-    //     `Sueldo: ${sueldo.toLocaleString('es-DO', { style: 'currency', currency: 'DOP' })}`,
-    //     `Salario diario: ${salarioDiario.toLocaleString('es-DO', { style: 'currency', currency: 'DOP' })}`,
-    //     `Meses en la empresa: ${tiempo}`,
-    //     `Días que te tocan: ${diasQueTocan}`,
-    //     `Bonificación en bruto: ${bonoBruto.toLocaleString('es-DO', { style: 'currency', currency: 'DOP' })}`,
-    //     `Impuestos: ${impuesto.toLocaleString('es-DO', { style: 'currency', currency: 'DOP' })}`,
-    //     `Bonificacion Neto: ${bonoNeto.toLocaleString('es-DO', { style: 'currency', currency: 'DOP' })}`    
+    datos.push(
+        `Sueldo: ${sueldo.toLocaleString('es-DO', { style: 'currency', currency: 'DOP' })}`,
+        `Salario diario: ${salarioDiario.toLocaleString('es-DO', { style: 'currency', currency: 'DOP' })}`,
+        `Años en la empresa: ${ConvertirMeses(tiempo)}`,
+        `Días que te tocan: ${diasQueTocan}`,
+        `Bonificación en bruto: ${bonoBruto.toLocaleString('es-DO', { style: 'currency', currency: 'DOP' })}`,
+        `Impuestos: ${impuesto.toLocaleString('es-DO', { style: 'currency', currency: 'DOP' })}`,
+        `Bonificacion Neto: ${bonoNeto.toLocaleString('es-DO', { style: 'currency', currency: 'DOP' })}`    
     
-    // );
+    );
     
-    // let resultados = document.getElementById('resultados');
+    
+    function ConvertirMeses(tiempo){
+        
+        let mesesAnios = `${Math.floor(tiempo / 12)} Años y ${tiempo % 12} Meses`;
 
-    // resultados.innerHTML = "";
+        return mesesAnios;
+    }
+    
+    let resultados = document.getElementById('resultados');
 
-    // datos.forEach(element => {
-    //     const li = document.createElement('li');
-    //     li.textContent = element;
-    //     resultados.appendChild(li);
+    resultados.innerHTML = "";
 
-    // });
+    datos.forEach(element => {
+        const li = document.createElement('li');
+        li.textContent = element;
+        resultados.appendChild(li);
+
+    });
     
 
 };
@@ -49,7 +55,7 @@ function mesesEnLaEmpresa(){
     let fechaIngreso = document.getElementById('date').value;
 
     //obtener el mes seleccionado
-    let periodoFiscal = document.getElementById('cierreFiscal').value;
+    let periodoFiscal = 12;
 
     // Validar si se ha seleccionado una fecha
     if (!fechaIngreso) {
@@ -58,16 +64,18 @@ function mesesEnLaEmpresa(){
     };
 
     // Crear objeto de la fecha seleccionada
-    const fecha = new Date(fechaIngreso+ 'T00:00:00');
+    const fecha = new Date(fechaIngreso+ 'T00:00:00'); //Mi fecha seleccionada
+  
 
     // Obtener el año actual
-    const anioAcutal = new Date().getFullYear();
+    const anioAnterior = new Date().getFullYear()-1; //2024
+    
 
     // Crear fecha del mes seleccionado en el año actual
-    const fechaComparar = new Date(anioAcutal, periodoFiscal - 1, 1); // Los meses en JavaScript son 0-indexados
-
+    const fechaComparar = new Date(anioAnterior, periodoFiscal - 1, 31); // Los meses en JavaScript son 0-indexados
+    
     // Calcular la diferencia en meses
-    const diferenciaMeses = (fechaComparar.getFullYear() - fecha.getFullYear()) * 12 + (fechaComparar.getMonth() - fecha.getMonth());
+    const diferenciaMeses = (fechaComparar.getFullYear() - fecha.getFullYear()) * 12 + (fechaComparar.getMonth() - fecha.getMonth())+1;
 
 
     return diferenciaMeses;
@@ -81,7 +89,7 @@ function calcularSalarioDiario(sueldo){
     
     if(tiempo < 12){
 
-        return (sueldo * tiempo) / 12;
+        return ((sueldo * tiempo) / 12) / 23.83;
 
     }else{
 
