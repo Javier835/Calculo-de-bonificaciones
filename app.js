@@ -27,8 +27,8 @@ function calcularBonos(){
         let salarioDiario = calcularSalarioDiario(sueldo);
         let diasQueTocan = calcularDiasQueTocan(parseInt(tiempo));
         let bonoBruto = bonosBruto(diasQueTocan,salarioDiario);
-        let impuesto = impuestos(bonoBruto);
-        let bonoNeto = bonosNeto(bonoBruto,impuesto);
+        //let impuesto = impuestos(bonoBruto);
+        //let bonoNeto = bonosNeto(bonoBruto,impuesto);
         
         //almacenar en array los datos de mi lista
         datos.push(
@@ -37,8 +37,8 @@ function calcularBonos(){
             `Años en la empresa: ${ConvertirMeses(tiempo)}`,
             `Días que te tocan: ${diasQueTocan}`,
             `Bonificación en bruto: ${bonoBruto.toLocaleString('es-DO', { style: 'currency', currency: 'DOP' })}`,
-            `Impuestos: ${impuesto.toLocaleString('es-DO', { style: 'currency', currency: 'DOP' })}`,
-            `Bonificacion Neto: ${bonoNeto.toLocaleString('es-DO', { style: 'currency', currency: 'DOP' })}`
+            //`Impuestos: ${impuesto.toLocaleString('es-DO', { style: 'currency', currency: 'DOP' })}`,
+            //`Bonificacion Neto: ${bonoNeto.toLocaleString('es-DO', { style: 'currency', currency: 'DOP' })}`
         );
 
         //referencia a mi lista que muestra los resultados
@@ -128,10 +128,10 @@ function bonosBruto(dias,salarioDiario){
     return dias*salarioDiario;
 };
 
-//calcular las retenciones de esta bonificación
-function impuestos(bonos){
-    return bonos * 0.18;
-};
+// //calcular las retenciones de esta bonificación
+// function impuestos(bonos){
+//     return bonos * 0.18;
+// };
 
 //calcular los bonos netos
 function bonosNeto(bruto,impuestos){
