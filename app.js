@@ -5,10 +5,6 @@ let tiempo;
 
 function calcularBonos() {
     
-    let result = webScrapingDGI('55,550.00');
-    console.log(result);
-
-    /*
     //vaciar array con mi lista
     datos = [];
 
@@ -56,7 +52,7 @@ function calcularBonos() {
 
         });
     }
-    */
+    
 };
 
 //convertir los meses laborados en años y meses
@@ -127,11 +123,6 @@ function calcularDiasQueTocan(anios) {
 //Calcular la bonificación en bruto
 function bonosBruto(dias, salarioDiario) {
     return dias * salarioDiario;
-};
-
-//calcular los bonos netos
-function bonosNeto(bruto, impuestos) {
-    return bruto - impuestos;
 };
 
 /*
