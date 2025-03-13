@@ -15,11 +15,11 @@ function calcularBonos(){
     //validar si el usuario registra su salario o si tiene mas de 3 meses
     if(sueldo == "" || sueldo == 0){
 
-        document.getElementById('resultados').innerHTML="Su salario debe ser superior a 0";
+        document.getElementById('resultados').innerHTML="Su salario debe ser superior a 0 😢";
 
     }else if(tiempo < 3 || !document.getElementById('date').value ){
 
-        document.getElementById('resultados').innerHTML="Debe tener mas de 3 meses para";
+        document.getElementById('resultados').innerHTML="Debe tener mas de 3 meses en la empresa 😢";
 
     }else{
 
